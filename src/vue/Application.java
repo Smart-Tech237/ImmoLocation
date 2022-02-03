@@ -218,7 +218,7 @@ public class Application extends javax.swing.JFrame {
         panneau_accuiel.setBackground(new java.awt.Color(51, 0, 51));
         panneau_accuiel.setLayout(new java.awt.GridBagLayout());
 
-        jButton_facture.setIcon(new javax.swing.ImageIcon("facture_t.png")); // NOI18N
+        jButton_facture.setIcon(new javax.swing.ImageIcon("images/facture_t.png")); // NOI18N
         jButton_facture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_factureActionPerformed(evt);
@@ -234,7 +234,7 @@ public class Application extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(27, 139, 0, 0);
         panneau_accuiel.add(jButton_facture, gridBagConstraints);
 
-        jButton_proprietes.setIcon(new javax.swing.ImageIcon("proprietes_t.png")); // NOI18N
+        jButton_proprietes.setIcon(new javax.swing.ImageIcon("images/proprietes_t.png")); // NOI18N
         jButton_proprietes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_proprietesActionPerformed(evt);
@@ -250,7 +250,7 @@ public class Application extends javax.swing.JFrame {
         panneau_accuiel.add(jButton_proprietes, gridBagConstraints);
 
         jButton_locataire.setBackground(new java.awt.Color(255,255, 255));
-        jButton_locataire.setIcon(new javax.swing.ImageIcon("locataire_t.png")); // NOI18N
+        jButton_locataire.setIcon(new javax.swing.ImageIcon("images/locataire_t.png")); // NOI18N
        // jButton_locataire.setForeground(Color.white);
         jButton_locataire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +265,7 @@ public class Application extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(27, 109, 0, 0);
         panneau_accuiel.add(jButton_locataire, gridBagConstraints);
 
-        button_quiterSysteme.setIcon(new javax.swing.ImageIcon("quitter_t.png")); // NOI18N
+        button_quiterSysteme.setIcon(new javax.swing.ImageIcon("images/quitter_t.png")); // NOI18N
         button_quiterSysteme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_quiterSystemeActionPerformed(evt);
@@ -280,7 +280,7 @@ public class Application extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(27, 100, 0, 0);
         panneau_accuiel.add(button_quiterSysteme, gridBagConstraints);
 
-        jLabel_A_logo.setIcon(new javax.swing.ImageIcon("logo_app.png")); // NOI18N
+        jLabel_A_logo.setIcon(new javax.swing.ImageIcon("images/logo_app.png")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
