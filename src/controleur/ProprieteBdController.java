@@ -20,6 +20,22 @@ static ConnexionBD conn = new ConnexionBD();
 		int t = conn.update(res);
 		
 	}
+	
+	public  void  Supprimer(Propriete obj) {
+		
+		String Requete = "DELETE FROM `propriete` WHERE typePropriete ="+obj.getType()+" AND prix_mensuel= "+obj.getPrix()+" AND localisation="+obj.getLocalisation()+" AND description="+obj.getLocalisation()+";";
+		
+		int t = conn.delete(Requete);
+		
+	}
+	
+	public void modifier(Propriete obj) {
+		
+		String requete =  "UPDATE `propriete` SET `id_propriete`="+obj.getId()+",`typePropriete`="+obj.getType()+",`prix_mensuel`="+obj.getPrix()+",`description`='"+obj.getDescription()+"',`localisation`='"+obj.getLocalisation()+"'  WHERE 1";
+		
+	}
+	
+	
 	public ArrayList<Propriete> proprieteLibre(ResultSet resultat) {
 		ArrayList<Propriete> tab = new ArrayList();
 		String t[] = new String[6];

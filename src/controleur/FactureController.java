@@ -8,12 +8,12 @@ import model.*;
 
 import model.Facture;
 
-public class FactureController {	public void afficheFacture() {
-	System.out.println("id locataire : "+ this.getIdLocataire() + "\n type de propriete : " + this.getTypePropriete() + "\n caution verser : " + this.getCaution() + "\n duree de contrat :" + this.getDureeContrat());
-}
+public class FactureController {	
+	
+	
 // insertion dans la base de donnee
-public void insertFacture(Facture fact) {
-	String query = "INSERT INTO `facture`(`idLocataire`, `typePropriete`, `caution`, `dure_contrat`) VALUES ('"+this.getIdLocataire()+"','"+this.getTypePropriete()+"','"+this.getCaution()+"','"+this.getDureeContrat()+"')";
+public void enregistrement(Facture fact) {
+	String query = "INSERT INTO `facture`(`idLocataire`, `typePropriete`, `caution`, `dure_contrat`) VALUES ('"+fact.getIdLocataire()+"','"+fact.getTypePropriete()+"','"+fact.getCaution()+"','"+fact.getDureeContrat()+"')";
 	ConnexionBD conn=new ConnexionBD();
 	int q = conn.update(query); 
 }

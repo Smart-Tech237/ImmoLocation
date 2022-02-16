@@ -137,7 +137,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(46, 68, 0, 0);
         formulaire_pannel.add(username, gridBagConstraints);
 
-        mot_de_passe_Field.setText("jPasswordField1");
+        mot_de_passe_Field.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

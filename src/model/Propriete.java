@@ -17,7 +17,7 @@ public  class Propriete {
 		this.prix=prix;
 		this.description=description;
 		this.localisation=localisation;
-		this.statut=1;	
+		this.statut=statut;	
 	
 	}
 	public void setType(int type) {

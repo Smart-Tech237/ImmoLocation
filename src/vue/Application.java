@@ -4,6 +4,8 @@ package vue;
 
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -18,6 +20,7 @@ import model.*;
 
 
 public class Application extends javax.swing.JFrame {
+	private String[] data;
 	ConnexionBD conn = new ConnexionBD();
 	
     /**
@@ -473,8 +476,23 @@ public class Application extends javax.swing.JFrame {
         boutton_enregistrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	
-         String data[]= {  numero_de_cni_TextField1.getText(), nom_TextField1.getText(),prenom_TextField1.getText(),telephone_Textfield1.getText()
-            	    };
+        
+         //insertion d'une facture en base de donnée
+         
+         Facture fact = new Facture(Integer.parseInt(numero_de_cni_TextField.getText()),
+        		 
+        		 Integer.parseInt( nom_TextField1.getText()),Integer.parseInt(prenom_TextField1.getText()),
+        		 
+        		 Integer.parseInt(telephone_Textfield1.getText()));
+         
+         FactureController fc = new FactureController();
+         
+         fc.enregistrement(fact);
+         
+     	 String data[]= {  numero_de_cni_TextField1.getText(), nom_TextField1.getText(),prenom_TextField1.getText(),telephone_Textfield1.getText()
+            	    };//affichage direct sur le jtable
+      
+         
          DefaultTableModel tbmodel = (DefaultTableModel)Facture_table.getModel();
          tbmodel.addRow(data);
             
@@ -741,14 +759,47 @@ public class Application extends javax.swing.JFrame {
             	}
             	else {
       
+            		//ajout en bd
             		
-DefaultTableModel tbmodel = (DefaultTableModel)propriete_table.getModel();
-                	
-                    String data1[]= { typedeprorpriete_combo.getSelectedItem().toString(), prix_mensuel_textfield.getText(),
-                    		description_textArea.getText(),localisation_textfield.getText(),statut_textfield.getText()
-                       	    };
+            		
+            		if(typedeprorpriete_combo.getSelectedItem().toString().equals("Maison")) {
+            			
+            			Propriete prop = new Propriete(1,Integer.parseInt(prix_mensuel_textfield.getText()),
+                				
+                										description_textArea.getText(),localisation_textfield.getText(),
+                										
+                										Integer.parseInt(statut_textfield.getText()));
+                		
+                		ProprieteBdController.enregistrement(prop);
+                		
+                		
+            			
+            		}
+            		
+            		else if(typedeprorpriete_combo.getSelectedItem().toString().equals("Boutique"))
+            		{
+            			Propriete prop = new Propriete(2,Integer.parseInt(prix_mensuel_textfield.getText()),
+                				
+                									   description_textArea.getText(),localisation_textfield.getText(),
+                									   
+                									   2);
+                		
+                		ProprieteBdController.enregistrement(prop);
+            			
+            		}
+            	
+            		DefaultTableModel tbmodel = (DefaultTableModel)propriete_table.getModel();
+
+            			 String data1[]= { typedeprorpriete_combo.getSelectedItem().toString(), prix_mensuel_textfield.getText(),
+                    		
+            					 description_textArea.getText(),localisation_textfield.getText(),"DISPONIBLE"};
+            			 
+            			 		 tbmodel.addRow(data1);
+            			
+            	
                    
-                    tbmodel.addRow(data1);
+                   
+                   
                        	
                    button_ajouter_P.setText("Ajouter");
                    
@@ -819,6 +870,8 @@ DefaultTableModel tbmodel = (DefaultTableModel)propriete_table.getModel();
                	  }
                	  else
                	  {
+               	   
+               		  
             	   tbmodel.removeRow(i);
                	  } }});
         propriete_label.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -1094,7 +1147,8 @@ DefaultTableModel tbmodel = (DefaultTableModel)propriete_table.getModel();
 					statut="DISPONIBLE";
 				}
 				String data[]= {proprieteType,prop.getLocalisation(),statut};
-			 proprietes_libre_combo= new JComboBox<String>(data);
+				
+			
 			}
     
           
@@ -1106,12 +1160,35 @@ DefaultTableModel tbmodel = (DefaultTableModel)propriete_table.getModel();
         ///////////////////////////////////AJOUTER UN LOCATAIRE GRACE AU BOUTTON AJOUTER QUI SE TROUVE DANS LOCATAIRE////////////////////////////////
           
         
-          
+			  String requete1 = "SELECT description FROM propriete WHERE status = 2";
+			   try { 
+			    ResultSet resultat = conn.select(requete1);
+			    
+			    ResultSetMetaData MetaData = resultat.getMetaData(); //recuperation des données de la requete
+			   
+			    while (resultat.next()) {
+
+			       for (int i = 1; i <= MetaData.getColumnCount(); i++) {
+			    	   
+			        System.out.println (resultat.getString(i) );
+			            String   elements_pro_libre[]= {resultat.getString(i)};
+        
+			            proprietes_libre_combo= new JComboBox<String>(elements_pro_libre);
+			       }
+			   
+			    }
+			    
+			    resultat.close();
+			 }
+			   catch (SQLException e) {
+			  
+				 conn.arret(e.getMessage());
+				 
+			 }
+
          // ++++++++++++++ici la table
           
-          String elements_pro_libre[]= {"Maison","Boutique"};
-          
-          proprietes_libre_combo= new JComboBox<String>(elements_pro_libre);
+       
         
         
         button_ajouter_L.addActionListener(new java.awt.event.ActionListener() {
